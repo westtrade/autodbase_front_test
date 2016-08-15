@@ -1,0 +1,34 @@
+<h1>Регистрация в интернет магазине</h1>
+
+<ul class="breadcrumb">
+	<li><a ui-sref="profile" href="/">Профиль</a> <span class="divider">/</span></li>
+	<li class="active">Регистрация</li>
+ </ul>
+
+<form ng-hide="user.uid" class="form-horizontal" novalidate name="registerForm">
+	<tabset>
+		<tab heading="Тип договора" active="tabs[0]" >
+			<div ng-include="'/views/register/accountType.html'"></div>
+		</tab>		
+		<tab heading="Организация"  ng-if="data.profile.contractType === 2"  active="tabs[1]"  disabled="!data.profile.contractType" >	
+			<div ng-include="'/views/register/orgInfo.html'"></div>
+		</tab>
+		<tab heading="Личные данные"  active="tabs[2]" disabled="!isValidOrg()">
+			<div ng-include="'/views/register/personalInfo.html'"></div>
+		</tab>
+		<tab heading="Месторасположение"  active="tabs[3]"  disabled="!isValidOrg() || !isValidPers()" >
+			<div ng-include="'/views/register/locationinfo.html'"></div>
+		</tab>
+	</tabset>
+</form>
+
+
+<form ng-if="user.uid" class="form-horizontal" novalidate name="validatePhone">
+	<legend>Пожалуйста подтвердите номер сотового телефона</legend>
+</form>
+	
+
+
+	
+
+

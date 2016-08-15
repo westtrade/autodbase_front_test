@@ -1,0 +1,70 @@
+<div class="row-fluid">
+	<div class="span6">
+		<legend>Информация о расположении</legend>
+		<fieldset>
+			<div class="control-group required">
+				<label class="control-label" for="inputEmail">Страна</label>
+				<div class="controls">
+					<select name="country"  required ui-select2 ng-model="data.profile.country" class="input-large">
+						<option  ng-repeat="country in places.countries" value="{{ country.country_id }}">{{ country.name }}</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="control-group required">
+				<label class="control-label" for="inputEmail">Регион</label>
+				<div class="controls">
+					<select name="region"  required ui-select2 ng-model="data.profile.region" class="input-large">
+						<option  ng-repeat="region in places.regions" value="{{ region.region_id }}">{{ region.name }}</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="control-group required">
+				<label class="control-label" for="inputEmail">Город</label>
+				<div class="controls">
+					<select  name="city" required ui-select2 ng-model="data.profile.city" class="input-large">
+						<option  ng-repeat="city in places.cities" value="{{ city.city_id }}">{{ city.name }}</option>
+					</select>
+				</div>
+			</div>
+
+
+			<div class="alert alert-warning"  ng-if="registerForm.$invalid">
+				<strong>Внимание!</strong> При заполнении формы были обнаруженны следующие ошибки:
+
+				<ul>
+					<li ng-if="registerForm.country.$invalid">Не заполненно поле "Страна"</li>
+					<li ng-if="registerForm.region.$invalid">Не заполненно поле "Регион"</li>
+					<li ng-if="registerForm.city.$invalid">Не заполненно поле "Город"</li>
+				</ul>
+			</div>
+		</fieldset>
+
+	</div>		
+	<div class="span6">			
+		<accordion close-others="false">		
+			<accordion-group is-open="true">
+				<accordion-heading>	<i class="icon-warning-sign icon-fixed-width"></i> Помощь </accordion-heading>
+
+					<p>Для регистрации в интернет-магазине, пожалуйста, заполните данную анкету. Обязательные для заполнения поля отмечены знаком *</p>
+					<!--
+					<p>Для перехода на следующее поле, если текущее заполненно правильно, можно нажать клавишу,  Enter или Tab. Если все поля заполненны правильно, Вы автоматически перейдете на следующий шаг.</p> -->
+
+					<p>Если у Вас возникли проблемы с регистрацией, пожалуйста обратитесь в техподдержку или напишите нам на адрес <a href="mailto:admin@autoparts-europe.ru">admin@autoparts-europe.ru</a></p>
+				</accordion-group>
+				<accordion-group is-open="true">
+					<accordion-heading>	<i class="icon-warning-sign icon-fixed-width"></i> Внимание! </accordion-heading>
+
+					<p>	Нажимая на кнопку зарегистрироваться, Вы соглашается с <a ui-sref="profile.userTerms">пользовательским соглашением</a>!	</p>
+			</accordion-group>
+		</accordion>
+	</div>
+</div>
+
+			
+				
+<div class="form-actions steps">
+	<button class="btn btn-success btn-normal pull-left" ng-click="prev()"><i class="icon-arrow-left"></i>  Назад </button>	
+	<button class="btn btn-primary btn-large pull-right clear" ng-disabled="registerForm.$invalid || !allowSubmit" ng-click="ok()">Зарегистрироваться</button>
+</div>

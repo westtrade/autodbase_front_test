@@ -1,0 +1,107 @@
+<div class="row-fluid">
+					<div class="span6">
+						
+						<legend>Личная информация</legend>
+						<fieldset>
+							
+
+							
+
+							<div class="control-group required" ng-class="{ 'warning' :  registerForm.secondname.$invalid && registerForm.secondname.$dirty}">
+								<label class="control-label" for="secondname">Фамилия</label>
+								<div class="controls">
+									<input type="text" name="secondname" required ng-model="data.profile.midName" placeholder="Фамилия" class="input-large">
+								</div>
+							</div>
+							
+
+							<div class="control-group required" ng-class="{ 'warning' :  registerForm.firstname.$invalid && registerForm.firstname.$dirty}">
+								<label class="control-label" for="firstname">Имя</label>
+								<div class="controls">
+									<input type="text" name="firstname" required ng-model="data.profile.name" placeholder="Имя" class="input-large">
+								</div>
+							</div>
+							
+
+							<div class="control-group required" ng-class="{ 'warning' :  registerForm.lastname.$invalid && registerForm.lastname.$dirty}">
+								<label class="control-label" for="lastname">Отчество</label>
+								<div class="controls">
+									<input type="text" name="lastname" required ng-model="data.profile.lastName" placeholder="Отчество" class="input-large">
+								</div>
+							</div>
+
+							<div class="control-group required" ng-class="{ 'warning' :  registerForm.email.$invalid && registerForm.email.$dirty }">
+								<label class="control-label" for="inputEmail">E-mail</label>
+								<div class="controls">
+									<input type="email" unique="/api/site/uniqueMail" name="email" required ng-model="data.user.email" placeholder="E-mail" class="input-large">
+								</div>
+							</div>
+
+							<div class="control-group required" ng-class="{ 'warning' :  registerForm.phone.$invalid && registerForm.phone.$dirty}">
+								<label class="control-label" for="phone">Мобильный телефон</label>
+								<div class="controls">
+									<div class="input-prepend">
+										<span class="add-on">+7</span>
+										<input type="text" ui-mask="(999) 999-9999"  unique="/api/site/uniquePhone" name="phone"	required ng-model="data.profile.phone" ui-mask-placeholder="Мобильный телефон" class="input-large">
+									</div>
+								</div>
+							</div>	
+
+
+							<div ng-if="!isValidPers()" class="alert alert-warning">
+							    <strong>Внимание!</strong> При заполнении формы были обнаруженны следующие ошибки:
+
+							    <ul>
+							    	<li ng-if="registerForm.email.$error.required">Не заполненно поле "E-mail"</li>
+							    	<li ng-if="registerForm.email.$error.email">Поле "E-mail" направильного формата</li>
+							    	
+							    	<li ng-if="registerForm.email.$error.unique">Данный E-mail уже зарегистрирован на сайте, если это Ваш E-mail попробуйте восстановить пароль, используя <a ui-sref="profile.forgot()">форму для восстановления пароля</a></li>
+
+
+							    	<li ng-if="registerForm.firstname.$invalid">Не заполненно поле "Имя"</li>
+							    	<li ng-if="registerForm.secondname.$invalid">Не заполненно поле "Фамилия"</li>
+							    	<li ng-if="registerForm.lastname.$invalid">Не заполненно поле "Отчество"</li>
+							    	<li ng-if="registerForm.phone.$error.required">Не заполненно поле "Мобильный телефон"</li>
+							    	<li ng-if="registerForm.hiddenOrgForm.$invalid">Поле "Мобильный телефон" имеет неправильный формат</li>
+
+
+							    	<li ng-if="registerForm.phone.$error.unique">Данный номер мобильного телефона уже зарегистрирован на сайте, если этот номер Ваш попробуйте восстановить пароль, используя <a ui-sref="profile.forgot()">форму для восстановления пароля</a></li>
+
+							    </ul>
+							</div>
+
+
+						</fieldset>
+					</div>
+					<div class="span6">
+						<accordion>		
+						<accordion-group is-open="true">
+							<accordion-heading>
+								<i class="icon-warning-sign icon-fixed-width"></i> Помощь
+							</accordion-heading>
+
+							<p>Для регистрации в интернет-магазине, пожалуйста, заполните данную анкету. Обязательные для заполнения поля отмечены знаком *</p>
+							<!--
+							<p>Для перехода на следующее поле, если текущее заполненно правильно, можно нажать клавишу,  Enter или Tab. Если все поля заполненны правильно, Вы автоматически перейдете на следующий шаг.</p> -->
+
+
+			<p>Если у Вас возникли проблемы с регистрацией, пожалуйста обратитесь в техподдержку или напишите нам на адрес <a href="mailto:admin@autoparts-europe.ru">admin@autoparts-europe.ru</a></p>
+						</accordion-group>
+					</accordion>
+
+
+					</div>
+				</div>
+
+				
+
+
+				<div class="form-actions steps">
+					<button class="btn btn-success btn-normal pull-left" 
+					ng-click="prev()"><i class="icon-arrow-left"></i>  Назад 
+					</button>					
+
+					<button class="btn btn-success btn-normal pull-right" 
+					ng-click="next()" ng-disabled="!isValidPers()">Дальше <i class="icon-arrow-right"></i> 
+					</button>
+				</div>

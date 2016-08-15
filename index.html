@@ -1,0 +1,167 @@
+<!doctype html>
+<html class="no-js" ng-app="autodbaseApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AUTOPARTS - {{ site.title }}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.css">
+
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="/bower_components/select2/select2.css">
+        <link rel="stylesheet" href="/bower_components/jgrowl/jquery.jgrowl.css">
+        <link rel="stylesheet" href="/bower_components/angular-loading-bar/src/loading-bar.css">
+
+        <link rel="stylesheet" href="/styles/main.css">
+
+        <!-- endbuild -->
+
+    <!--[if IE 7]> <link rel="stylesheet" href="styles/font-awesome/css/font-awesome-ie7.min.css"> <![endif]-->
+</head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+      <script src="bower_components/es5-shim/es5-shim.js"></script>
+      <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+  <div ng-controller="headerCtrl" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner"> <div class="container">
+    
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+        </button>
+
+        <a class="brand" ui-sref="front">AUTOPARTS / АВТОЗАПЧАСТИ</a>
+        <div class="nav-collapse collapse">       
+
+        <ul class="nav">
+          <li ng-class="{ active: $state.includes('cat') }"> <a href ui-sref="cat">Каталог автозапчастей</a> </li>
+          <li ng-class="{ active: $state.includes('cart') }"> <a href ui-sref="cart">Корзина</a> </li>
+          <li ng-class="{ active: $state.includes('profile') }">  <a href ui-sref="profile">Профиль</a> </li>
+        </ul>
+
+        <form class="navbar-search pull-right form-search">
+            <input type="text"
+              ui-keyup="{'enter': 'transition()' }"
+              ng-model="site.search" class="search-query span4" 
+              placeholder="Номер запчасти. Например 24312-22010">
+            <a ui-sref="cat.search({ 'search' : site.search })" class="searchBtn"><span class="icon icon-search"></span></a>
+        </form> 
+    
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+    
+
+
+    <div class="container page">
+      <div class="row">
+        <div class="span3">
+
+          <div class="panel">
+            <div ng-hide="user.data.uid" ng-include="src" ng-controller="loginFormCtrl"></div>            
+            <a ui-sref="profile.register" 
+            class="btn btn-block btn-primary btn-normal">ЗАРЕГИСТРИРОВАТЬСЯ</a>
+          </div>
+
+          <div class="panel"><legend>Корзина</legend></div>
+        </div>
+
+
+        <div class="span9"><div class="article" ui-view></div></div>
+        
+      </div>
+    </div>
+
+
+  
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <!-- Разработка сайта <a href="#">Попов Геннадий</a> -->
+
+
+            <span class="pull-right">
+              &copy; 2013 - 2014. Все права защишены.
+              
+            </span>
+          </div>
+        </div>
+      </div>
+    </footer>
+      
+      <script type="text/javascript" src="//www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+      
+      <!-- <script charset="utf-8" src="http://api-maps.yandex.ru/1.1/index.xml?key=AOfIU1IBAAAATNsgSgIA2D_SJX0kB3X03k5F6ZZ1U6qNnRUAAAAAAAAAAABMFVdaU5BLL84YaDsdN8j_GmgBIw==" type="text/javascript"></script> -->
+      
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.5.1/jquery.nicescroll.min.js"></script>
+      <script type="text/javascript" src="/bower_components/select2/select2.js"></script>
+      <script type="text/javascript" src="/bower_components/jgrowl/jquery.jgrowl.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+      <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.3.1/jquery.maskedinput.min.js"></script> -->
+
+
+
+
+      <script src="/angular/angular.js"></script>
+      <script src="/bower_components/angular-recaptcha/release/angular-recaptcha.js"></script>
+
+     <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script> -->
+
+      <script src="http://angular-ui.github.io/ui-utils/dist/ui-utils.js"></script>
+
+        <!-- build:js scripts/modules.js -->
+        <script type="text/javascript" src="/bower_components/jgrowl/jquery.jgrowl.js"></script>
+        <script type="text/javascript" src="/bower_components/angular-loading-bar/src/loading-bar.js"></script>
+        
+
+        <script src="/angular/angular-cache.js"></script>
+        <script src="/angular/angular-touch.js"></script>
+        <script src="/angular/angular-sanitize.js"></script>
+        <!-- // <script src="angular/angular-route.js"></script> -->
+        <script src="/angular/angular-ui-router.js"></script>
+
+        <script src="/angular/ui/ui-bootstrap-custom-tpls-0.6.0.js"></script>
+        <script src="/angular/ui/ui-bootstrap-custom-0.6.0.js"></script>
+
+        <script src="/angular/angular-resource.js"></script>
+        <script src="/angular/angular-cookies.js"></script>
+        <script src="/angular/angular-animate.js"></script>
+        
+        <script type="text/javascript" src="/bower_components/angular-ui-select2/src/select2.js"></script>
+
+
+        <script src="/angular/angular-mocks.js"></script>
+        <!-- endbuild --> 
+
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="/scripts/app.js"></script>
+        <script src="/scripts/service/cacheMan.js"></script>
+        <script src="/scripts/controllers/main.js"></script>
+        <script src="/scripts/controllers/header.js"></script>
+        <script src="/scripts/controllers/cart.js"></script>
+        <script src="/scripts/controllers/user.js"></script>
+        <script src="/scripts/controllers/loginform.js"></script>
+        <script src="/scripts/controllers/modelCat.js"></script>
+        <script src="/scripts/controllers/forgotpass.js"></script>
+        <script src="/scripts/controllers/register.js"></script>
+        <script src="/scripts/services/user.js"></script>
+        <!-- endbuild -->
+</body>
+</html>

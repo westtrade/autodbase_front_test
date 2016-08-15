@@ -1,0 +1,75 @@
+<div class="row-fluid">
+	<div class="span6">
+		<legend>Организация</legend>
+		<fieldset>
+			<div class="control-group required" ng-class="{ 'warning' :  (registerForm.hiddenOrgForm.$invalid || registerForm.inputOrgName.$invalid) && registerForm.inputOrgName.$dirty}">
+				<label class="control-label" for="inputOrgName">Наименование орг.</label>
+				<div class="controls">
+					<div class="input-prepend  orgForm">
+						<div class="btn-group">
+							<button class="btn dropdown-toggle">
+								{{ data.profile.orgType }} 	<span ng-hide="data.profile.orgType">форма</span> <span class="caret"></span> 
+							</button>							
+							<ul class="dropdown-menu">
+							    <li ng-repeat="ch in ['ООО', 'ЗАО', 'ОАО', 'АО', 'ЧП', 'ИЧП', 'ИП', 'ТОО', 'Иное']"><a href="" ng-click="choice(ch)">{{ch}}</a></li>
+							</ul>
+						</div>
+
+						<input type="hidden" ng-required="data.profile.contractType === 2" 
+											 ng-model="data.profile.orgType" name="hiddenOrgForm" >
+
+						<input class="input" ng-required="data.profile.contractType === 2" ng-model="data.profile.orgName" name="inputOrgName" type="text">
+					</div>
+				</div>
+			</div>						
+
+			<div class="control-group required"  ng-class="{ 'warning' :  registerForm.selectRepr.$invalid && registerForm.selectRepr.$dirty}">
+				<label class="control-label" for="inputEmail">Я представитель</label>
+				<div class="controls">
+					<select name="selectRepr"  ng-required="data.profile.contractType === 2"  
+					ui-select2 ng-model="data.profile.orgRepresent" class="input-large">
+						<option value="0">автосервиса</option>
+						<option value="1">автопарка</option>
+						<option value="2">автомагазина</option>
+						<option value="3">оптового склада</option>
+						<option value="4">страховой компании</option>
+					</select>
+				</div>
+			</div>
+
+
+			<div ng-if="!isValidOrg()" class="alert alert-warning">
+			    <strong>Внимание!</strong> При заполнении формы были обнаруженны следующие ошибки:
+
+			    <ul>
+			    	<li ng-if="registerForm.hiddenOrgForm.$invalid">Не выбрана форма организации</li>
+			    	<li ng-if="registerForm.inputOrgName.$invalid"> Не заполненно наименование организации</li>
+			    	<li ng-if="registerForm.selectRepr.$invalid"> Не заполненно поле представительства 	</li>
+			    </ul>
+			</div>
+
+		</fieldset>
+		
+
+	</div>
+
+	<div class="span6">
+		<accordion close-others="true">		
+			<accordion-group is-open="true">
+				<accordion-heading>	<i class="icon-warning-sign icon-fixed-width"></i> Помощь</accordion-heading>
+				<p>Для регистрации в интернет-магазине, пожалуйста, заполните данную анкету. Обязательные для заполнения поля отмечены знаком *</p>
+
+				<p>Если у Вас возникли проблемы с регистрацией, пожалуйста обратитесь в техподдержку или напишите нам на адрес <a href="mailto:admin@autoparts-europe.ru">admin@autoparts-europe.ru</a></p>
+			</accordion-group>
+		</accordion>
+	</div>
+</div>
+
+
+<div class="form-actions steps">
+	<button class="btn btn-success btn-normal pull-left" 
+	ng-click="prev()"><i class="icon-arrow-left"></i>  Назад 
+	</button>					
+	<button ng-disabled="!isValidOrg()" class="btn btn-success btn-normal pull-right" ng-click="next()">Дальше <i class="icon-arrow-right"></i> 
+	</button>
+</div>

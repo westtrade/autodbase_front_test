@@ -1,0 +1,20 @@
+<div ui-view=""></div>
+
+<div class="row-fluid" id="brandCat" ng-if="($state.is('cat') || $state.is('front')) && (brands && !isFront)"> 
+	<div class="span12 brandFilter">
+		<h1>Бренды - весь каталог</h1>
+		<hr>
+		<input class="input-block-level" ng-model="search.MFA_BRAND" placeholder="Поиск в брендах. Например: Acura" type="text">
+	</div>  	  
+	
+	<br clear="all">
+
+	<div class="item span2" ng-repeat="brand in brands|filter:search">
+		<a ui-sref="cat.brand({ brand : brand.MFA_MFC_CODE })" class="btn btn-block">
+		<!-- <img class="lazy" height="26px" src="http://autoparts-europe.ru/static/assets/img/brands/{{ brand.code }}.png" alt=""> -->
+		{{ brand.MFA_BRAND }} 
+		</a>   
+	</div>
+
+	<br clear="all"><br clear="all">
+</div>

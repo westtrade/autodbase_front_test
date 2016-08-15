@@ -1,0 +1,69 @@
+
+<legend>Восстановление пароля</legend>
+
+<ul class="breadcrumb">
+	<li><a ui-sref="profile" href="/">Профиль</a> <span class="divider">/</span></li>
+	<li class="active">Восстановление пароля</li>
+ </ul>
+
+<tabset>
+    <tab>
+    	<tab-heading> По SMS</tab-heading>
+    	<form name="recPassSMS" novalidate class="form-horizontal">
+    		<div class="row-fluid">
+    			<div class="span6">
+		    		<fieldset>
+						<div class="control-group">
+							<label class="control-label" for="inputEmail">Страна</label>
+							<div class="controls">
+								<select  ui-select2 ng-model="country" class="input-medium">
+									<option value="0">Россия</option>
+								</select>
+							</div>    			
+						</div>
+						<div class="control-group">
+
+							<div class="control-group required">
+								<label class="control-label" for="inputEmail">Телефон</label>
+								<div class="controls">
+									<div class="input-prepend">
+										<span class="add-on"><img src="/img//ru.png" alt=""></span>
+										<input type="text" placeholder="Телефон" class="input-medium">
+									</div>									
+								</div>
+							</div>
+
+						</div>
+						<div class="control-group">
+							<div
+							    vc-recaptcha
+							    ng-model="model.captcha"
+							    key="6LeYG-gSAAAAACKSrn3RpnsUqidCnvGDb293N22k"
+							></div>
+
+
+							
+						</div>
+						<div class="control-group">
+							
+						</div>
+		    		</fieldset>    				
+    			</div>
+    			<div class="span6">
+    				<div class="well well-small">
+    					<legend class="small">Информация!</legend>
+    					<p>
+    						На ваш телефон будет выслано SMS с временным кодом - введите его на этой странице в поле "код из SMS". На втором шаге вы сможете самостоятельно сменить пароль для вашей учетной записи. 
+    					</p>
+    				</div>
+
+    			</div>
+    		</div>
+
+    	</form>
+    </tab>
+    <tab>
+      <tab-heading>По E-mail </tab-heading>
+
+    </tab>
+  </tabset>

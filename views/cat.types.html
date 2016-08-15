@@ -1,0 +1,76 @@
+<div ng-if="!loading" class="row-fluid">
+	<div class="span12">
+		<h1>Выбор типа двигателя</h1>
+		<!-- <img ng-src="{{ 'http://autoparts-europe.ru/' + data.logo }}" 
+		class="pull-right car-brand"> -->
+		<br>
+		<ul class="breadcrumb">
+			<li><a ui-sref="cat">Бренд: {{   data.manufactura.MFA_BRAND }}</a> <span class="divider">/</span></li>
+			<li><a ui-sref="cat.brand({ brand : data.manufactura.MFA_MFC_CODE  })">Модель: {{  data.model.type }}</a> <span class="divider">/</span></li>
+			<li class="active">Выбор типа двигателя</li>
+		</ul> 
+	</div>	
+</div>
+
+<div ng-if="!loading" class="row-fluid">
+	<div class="span12">
+		<table class="table table-condensed table-hover table-striped modelTable">
+			<thead>
+				<tr>
+					<th  ng-click="predicate = 'longName'; reverse = predicate==='longName' ? ! reverse  : false" >Модель
+						<a ng-if="data.types.length > 1" href="" class="pull-right" ng-class="{ active :  predicate === 'longName'}">
+							<i ng-class="{ 'icon-caret-down' :  !reverse, 'icon-caret-up' :  reverse }"></i>
+						</a>
+					</th>
+					<th ng-click="predicate = 'start'; reverse = predicate==='start' ? ! reverse  : false">Год выпуска
+						<a ng-if="data.types.length > 1" href="" class="pull-right" ng-class="{ active :  predicate === 'start'}">
+							<i ng-class="{ 'icon-caret-down' :  !reverse, 'icon-caret-up' :  reverse }"></i>
+						</a>
+					</th>
+					<th>Тип</th>
+					<th ng-click="predicate = 'TYP_KW_FROM'; reverse = predicate==='TYP_KW_FROM' ? ! reverse  : false" >Мощность
+						<a ng-if="data.types.length > 1" href="" class="pull-right" ng-class="{ active :  predicate === 'TYP_KW_FROM'}">
+							<i ng-class="{ 'icon-caret-down' :  !reverse, 'icon-caret-up' :  reverse }"></i>
+						</a>
+					</th>
+					<th ng-click="predicate = 'TYP_CCM'; reverse = predicate==='TYP_CCM' ? ! reverse  : false" >Объем
+						<a ng-if="data.types.length > 1" href="" class="pull-right" ng-class="{ active :  predicate === 'TYP_CCM'}">
+							<i ng-class="{ 'icon-caret-down' :  !reverse, 'icon-caret-up' :  reverse }"></i>
+						</a>			
+					</th>
+					<th ng-click="predicate = 'cylinders'; reverse = predicate==='cylinders' ? ! reverse  : false">Цил.
+						<a ng-if="data.types.length > 1" href="" class="pull-right" ng-class="{ active :  predicate === 'cylinders'}">
+							<i ng-class="{ 'icon-caret-down' :  !reverse, 'icon-caret-up' :  reverse }"></i>
+						</a>
+					</th>
+					<th ng-click="predicate = 'fuel'; reverse = predicate==='fuel' ? ! reverse  : false">Топливо
+						<a ng-if="data.types.length > 1" href="" class="pull-right" ng-class="{ active :  predicate === 'fuel'}">
+							<i ng-class="{ 'icon-caret-down' :  !reverse, 'icon-caret-up' :  reverse }"></i>
+						</a>
+					</th>
+					<th ng-click="predicate = 'body'; reverse = predicate==='body' ? ! reverse  : false">Кузов
+						<a ng-if="data.types.length > 1" href="" class="pull-right" ng-class="{ active :  predicate === 'body'}">
+							<i ng-class="{ 'icon-caret-down' :  !reverse, 'icon-caret-up' :  reverse }"></i>
+						</a>
+					</th>
+				</tr>
+				<tr>
+					<td colspan="8"><input type="text" ng-model="search.longName"  placeholder="Поиск по моделям" class="input-block"></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-click="$state.transitionTo('cat.tree', { brand : brandID , model : data.model.id, type : type.id })"
+					ng-repeat="type in data.types | filter:search | orderBy:predicate:reverse">
+					<td>{{ type.longName }}</td>
+					<td>{{ type.start | tecdocdate }} - {{ type.end | tecdocdate:true }}</td>
+					<td></td>
+					<td>{{ type.TYP_KW_FROM }}Кв - {{type.TYP_HP_FROM}} Лс</td>
+					<td>{{ type.TYP_CCM }} см <sup>3</sup></td>
+					<td>{{ type.cylinders }}</td>
+					<td>{{ type.fuel }}</td>
+					<td>{{ type.body }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

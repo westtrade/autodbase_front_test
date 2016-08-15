@@ -1,0 +1,9 @@
+<a href="" ng-click="add(data, $index)">
+	<i class="icon-fixed-width"
+	ng-class="{'icon-expand' : !data.expanded &&  data.folder != 0, 'icon-collapse' : data.expanded, 'icon-cog' : data.folder === 0}"></i> 
+	{{ data.title | capitalise }}
+</a>
+<ul ng-if="data.expanded"> 
+	<li ng-repeat="data in tree[data.level + '_' + data.children]" ng-include="'/views/tree_item_renderer.html'" 
+	ng-class="{ 'last' : $last }"></li> 
+</ul>

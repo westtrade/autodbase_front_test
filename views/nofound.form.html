@@ -1,0 +1,44 @@
+<h3>Запрос ненайденного артикула</h3>
+<form action="/findart" method="POST" class="form form-horizontal">
+
+    <div class="control-group required">
+        <label class="control-label" for="name">Имя</label>
+        <div class="controls">
+          <input  class="input-xlarge" type="text" id="name" placeholder="Имя" required ng-model="form.name">
+        </div>
+    </div>  
+
+    <div class="control-group required">
+        <label class="control-label" for="phone">Телефон</label>
+        <div class="controls">
+          <input class="input-xlarge" type="text" id="phone" placeholder="Телефон" ng-model="form.phone">
+        </div>
+    </div>  
+
+    <div class="control-group required">
+        <label class="control-label" for="email">E-mail</label>
+        <div class="controls">
+          <input class="input-xlarge" type="text" id="email" placeholder="Email" ng-model="form.email">
+        </div>
+    </div>
+    
+    <div class="control-group required">
+        <label class="control-label" for="artid">Что искали</label>
+        <div class="controls">
+          <input class="input-xlarge" type="text" value="{{ artid }}" id="artid" placeholder="Артикул" ng-model="form.artid" ng-model="form.artid">
+        </div>
+    </div>
+    
+    <div class="control-group">
+        <label class="control-label" for="comment">Комментарий</label>
+        <div class="controls">
+            <textarea class="input-xxlarge" placeholder="Если Вы хотите что-нибудь добавить - напишите здесь." name="comment" id="comment" cols="30" rows="10"></textarea>
+        </div>
+    </div>
+        
+    <div class="control-group">
+            <div class="controls">
+                <button class="btn btn-success span3">Добавить</button>
+            </div>
+    </div>
+</form>

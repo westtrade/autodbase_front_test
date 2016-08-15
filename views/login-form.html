@@ -1,0 +1,45 @@
+<legend>Вход в магазин <i ng-show="isLoad" class="icon-spin icon icon-spinner pull-right"></i></legend>
+<form class="loginForm" novalidate>
+
+<!-- http://stackoverflow.com/questions/13306670/bootstrap-prepended-and-appended-input-how-to-max-input-field-width -->
+
+	<div class="social_login">
+		Войти с помощью:
+		<span class="pull-right">
+			<a href="#"><i class="icon-vk icon-large"></i></a>
+			<a href="#"><i class="icon-facebook-sign icon-large"></i></a>
+			<a href="#"><i class="icon-google-plus-sign icon-large"></i></a>
+		</span>
+	</div>
+  
+	<div ng-class="{ error : loginForm.login.$invalid }" class="control-group">
+		<input ng-model="data.email" required class="input-block-level" name="login" 	
+		placeholder="E-mail" type="email"> 
+	</div>
+
+	<div ng-class="{ error : loginForm.pass.$invalid }" class="control-group password">
+		<div class="input-append input-block-level">	
+			<input ng-model="data.pass" class="input" name="pass" required placeholder="Пароль" type="password" > 
+
+			<button ng-click="login()" class="btn btn-warning" type="submit"> Вход </button>
+		</div>
+	</div>
+	
+	<div class="add"> 
+		<a class="pull-right" ui-sref="profile.forgot">Забыли пароль?</a>
+		
+		 
+		<label for="state"  ng-click="state = !state;" class="checkbox sw">
+			<div class="switch">
+			    <input name="state" ng-model="state" type="checkbox">
+			    <div class="lab"><i class="icon-off"></i></div>
+
+			</div> 
+			Запомнить 
+		</label>
+
+		<!--<label class="checkbox">
+			<input ng-model="data.remember" type="checkbox"> Запомнить меня
+		</label> -->
+	</div>
+</form> 

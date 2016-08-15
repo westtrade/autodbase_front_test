@@ -1,0 +1,20 @@
+
+
+      /*.state('profile.register',{ 
+        url : '/register',
+        onEnter: function($stateParams, $state, $modal) {
+          var modalInstance = $modal.open({
+              templateUrl: 'views/register-form.html',
+              backdrop : true,
+              controller: 'UserregCtrl',
+              resolve: {
+                items: function () {
+                  //return $scope.items;
+                }
+              }
+            });
+
+        }
+
+
+      })*/

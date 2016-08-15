@@ -1,0 +1,88 @@
+<div ng-if="data.models" class="row-fluid">
+	<div class="span12">
+		<h1>Каталог моделей: {{ data.manufactura.MFA_BRAND }}</h1>
+		<!-- <img ng-src="{{ 'http://autoparts-europe.ru/' + data.logo }}" 
+		class="pull-right car-brand"> -->
+		<br>
+		<ul class="breadcrumb">
+			<li><a ui-sref="cat">Бренд: {{ data.manufactura.MFA_BRAND }}</a> <span class="divider">/</span></li>
+			<li class="active">Каталог моделей</li>
+			<span class="pull-right">
+				<a href="" ng-click="setCatType(1)" ng-class="{ active : catType === 1 }" ><i class="icon-table"></i></a>
+				<a href="" ng-click="setCatType(2)" ng-class="{ active : catType === 2 }"><i class="icon-th-large"></i></a>
+			</span>
+		</ul> 
+	</div>	
+</div>
+
+<div class="row-fluid" ng-if="catType === 1 && data.models">
+	<table class="table table-bordered table-hover table-condensed table-striped modelTable">
+		<thead>
+			<tr>
+				<th ng-click="predicate = 'type'; reverse = predicate==='type' ? ! reverse  : false">Модель 
+					<a ng-if="data.models.length > 1" href="" class="pull-right" ng-class="{ active :  predicate === 'type'}" >
+						<i ng-class="{ 'icon-caret-down' :  !reverse, 'icon-caret-up' :  reverse }"></i>
+					</a>
+				</th>
+				<th ng-click="predicate = 'start'; reverse = predicate==='start' ? ! reverse  : false">Начало продаж  
+					<a ng-if="data.models.length > 1" href="" class="pull-right" ng-class="{ active :  predicate === 'start'}">
+						<i ng-class="{ 'icon-caret-down' :  !reverse, 'icon-caret-up' :  reverse }"></i>
+					</a>
+				</th>
+				<th ng-click="predicate = 'end'; reverse = predicate==='end' ? ! reverse  : false" >Конец продаж  
+					<a ng-if="data.models.length > 1" href="" class="pull-right" ng-class="{ active :  predicate === 'end'}">
+					<i ng-class="{ 'icon-caret-down' :  !reverse, 'icon-caret-up' :  reverse }"></i>
+				</th>
+			</tr>
+			<tr ng-show="data.models.length > 1" >
+				<td><input type="text" class="input-block" ng-model="tQuery.type"></td>
+				<td><input type="text" class="input-block" ng-model="tQuery.start"></td>
+				<td><input type="text" class="input-block" ng-model="tQuery.end"></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="row in data.models | filter:tQuery | orderBy:predicate:reverse" 
+				ng-click="$state.transitionTo('cat.types', { brand : brandID , model : row.id })">
+				<td>{{ row.type }}</td>
+				<td>{{ row.start | tecdocdate }}</td>
+				<td>{{ row.end | tecdocdate:true }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div  ng-if="catType === 2 && data.models">
+	<div class="row-fluid" ng-repeat="models in catalog.rows">
+
+		<div ng-repeat="model in models" class="span3 model">
+			<div class="wrap" >				
+				<img class="img-polaroid lazy" width="170" height="90" 
+				ng-src="{{ data.images[model] || 'http://fakeimg.pl/170x90/eee/444/?text=No photo&font=Arial' }}" />
+				<strong>{{ model }}</strong>
+
+				
+				<div ng-if="catalog.index[model].length > 1" class="btn-group btn-block">
+					<a class="dropdown-toggle btn btn-block btn-normal" data-toggle="dropdown" href="#"> Выберите модель <span class="caret"></span> </a>
+					<ul class="dropdown-menu">
+							<li ng-repeat="index in catalog.index[model]">
+								<a tabindex="-1" ui-sref="cat.types({ brand : brandID , model : data.models[index].id })" > 
+									{{ data.models[index].type }}  
+									{{ data.models[index].start | tecdocdate }} -  {{ data.models[index].end | tecdocdate:true }}
+								</a>
+							</li>
+					</ul>	
+				</div>
+
+				<a class=" btn btn-block  btn-normal" ng-if="catalog.index[model].length === 1"  ui-sref="cat.types({ brand : brandID , model : data.models[catalog.index[model][0]].id })"> 
+					{{ data.models[catalog.index[model][0]].type }}  
+					{{ data.models[catalog.index[model][0]].start | tecdocdate }} -  {{ data.models[catalog.index[model][0]].end | tecdocdate:true }}
+				</a>
+
+
+
+
+			</div>
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,11 @@
+{
+  "name": "Font-Awesome-More",
+  "version": "3.0.2",
+  "main": "css/font-awesome.css",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "docs"
+  ]
+}

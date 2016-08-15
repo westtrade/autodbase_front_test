@@ -1,0 +1,15 @@
+{
+  "name": "jstree",
+  "homepage": "https://github.com/vakata/jstree",
+  "version": "2.0.0-alpha",
+  "_release": "2.0.0-alpha",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.0.0-alpha",
+    "commit": "2e2ce74b15326529c26cf7fb84e3ffd85133043e"
+  },
+  "_source": "git://github.com/vakata/jstree.git",
+  "_target": "~2.0.0-alpha",
+  "_originalSource": "jstree",
+  "_direct": true
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Font-Awesome-More",
+  "main": "css/font-awesome.css",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "docs"
+  ],
+  "homepage": "https://github.com/hectorcenteno/Font-Awesome-More",
+  "_release": "master",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "aa00919881388c2f7a8da35c2029851d98aeaf38"
+  },
+  "_source": "git://github.com/hectorcenteno/Font-Awesome-More.git",
+  "_target": "*",
+  "_originalSource": "font-awesome-more",
+  "_direct": true
+}

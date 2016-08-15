@@ -1,0 +1,14 @@
+{
+  "name": "Fontstrap",
+  "homepage": "https://github.com/gregoryloucas/Fontstrap",
+  "_release": "master",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "493af0bbbf509a155848275f6464bb1683fbba22"
+  },
+  "_source": "https://github.com/gregoryloucas/Fontstrap.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/gregoryloucas/Fontstrap.git",
+  "_direct": true
+}

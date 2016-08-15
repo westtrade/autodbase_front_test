@@ -1,0 +1,24 @@
+<legend>Импортировать данные из соц. сети</legend>
+<div class="control-group">					
+		<a href="#"><i class="icon-vk icon-fixed-width  icon-2x"></i></a>
+		<a href="#"><i class="icon-facebook-sign icon-fixed-width  icon-2x"></i></a>
+		<a href="#"><i class="icon-google-plus-sign icon-fixed-width  icon-2x"></i></a>
+		В дальнейшем соц сеть можно будет использовать для входа в магазин.
+</div>
+
+
+<legend>Выберите тип договора</legend>
+<div class="control-group">
+	<div class="row-fluid selectContractType">
+		<div class="well well-small span6 first" ng-class="{ 'active' :  data.profile.contractType === 1}" ng-click="step(1, 1)">
+			<legend class="small">Частное лицо</legend>
+			<p> - если Вы планируете оплачивать заказы в офисе регистрации, в случае оплаты заказов через банк платежи будут Вами оформляться как платеж от частного лица на счет организации. Отношения между Вами и магазином будут регламентироваться законом <strong>'О защите прав потребителей'</strong>.</p>
+		</div>
+		<div class="well well-small span6" ng-class="{ 'active' :  data.profile.contractType === 2}" ng-click="step(1, 2)">
+			<legend class="small">Юридическое лицо</legend>
+			<p>- если ваши платежи будут выполняться только со счета организации. Отношения между вами и магазином будут регламентироваться договором. Ознакомиться и подписать договор вы сможете в офисе регистрации.</p>
+			<br>
+
+		</div>
+	</div>
+</div>

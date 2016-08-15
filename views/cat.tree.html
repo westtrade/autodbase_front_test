@@ -1,0 +1,109 @@
+<div ng-if="!loading" class="row-fluid">
+	<div class="span12">
+		<h1>
+			Выбор запчасти
+			<a href="" class="pull-right" ng-click="showMenu()"><i class="icon-reorder"></i></a>
+		</h1>
+		<!-- <img ng-src="{{ 'http://autoparts-europe.ru/' + data.logo }}" 
+		class="pull-right car-brand"> -->
+
+
+		<br>
+
+		<ul class="breadcrumb">
+			<li><a ui-sref="front">Бренд: {{  data.manufactura.MFA_BRAND }}</a> <span class="divider">/</span></li>
+			<li><a ui-sref="cat.brand({ brand : data.manufactura.MFA_MFC_CODE })">Модель: {{  data.model.type }}</a> <span class="divider">/</span></li>
+			<li><a ui-sref="cat.types({ brand : data.manufactura.MFA_MFC_CODE, types : data.model.id })">
+				Тип: {{  data.type.longName }} 
+				(
+					{{ data.type.TYP_KW_FROM }}Кв - {{ data.type.TYP_HP_FROM}} Лс
+					{{ type.start | tecdocdate }} - {{ type.end | tecdocdate:true }}
+
+				)
+
+				 </a> 
+				<span class="divider">/</span></li>
+			<li class="active">Выбор запчасти</li>
+		</ul> 
+	</div>		
+	
+	<div class="span12 selectTreeCat" ng-class="{ loaded : table.length }">
+		
+		
+		
+		<div class="tree" ng-class="{display : menuDisplay}">
+			<legend><a  ng-show="table.length" href="" ng-click="showMenu()"><i class="icon-reorder"></i></a> Выбор категории</legend>
+			<ul> <li ng-repeat="data in tree.root" ng-include="'/views/tree_item_renderer.html'"></li> </ul>
+		</div>
+
+		<table class="table table-condensed table-hover table-bordered modelTable">
+			<thead>
+				<tr>
+					<th  class="numCol" ng-click="predicate = 'ART_ARTICLE_NR'; reverse = predicate==='ART_ARTICLE_NR' ? ! reverse  : false">Номер
+						<a ng-if="table.length > 1" href="" class="pull-right" ng-class="{ active :  predicate === 'ART_ARTICLE_NR'}">
+							<i ng-class="{ 'icon-caret-down' :  !reverse, 'icon-caret-up' :  reverse }"></i>
+						</a>
+					</th>
+					<th class="brandCol" ng-click="predicate = 'SUP_BRAND'; reverse = predicate==='SUP_BRAND' ? ! reverse  : false">Фирма
+						<a ng-if="table.length > 1" href="" class="pull-right" ng-class="{ active :  predicate === 'SUP_BRAND'}">
+							<i ng-class="{ 'icon-caret-down' :  !reverse, 'icon-caret-up' :  reverse }"></i>
+						</a>					
+					</th>
+					<th class="colName" ng-click="predicate = 'TEX_TEXT'; reverse = predicate==='TEX_TEXT' ? ! reverse  : false">Наименование
+						<a ng-if="table.length > 1" href="" class="pull-right" ng-class="{ active :  predicate === 'TEX_TEXT'}">
+							<i ng-class="{ 'icon-caret-down' :  !reverse, 'icon-caret-up' :  reverse }"></i>
+						</a>
+					</th>
+					<th ng-click="predicate = 'price'; reverse = predicate==='price' ? ! reverse  : false">Стоимость
+						<a ng-if="table.length > 1" href="" class="pull-right" ng-class="{ active :  predicate === 'price'}">
+							<i ng-class="{ 'icon-caret-down' :  !reverse, 'icon-caret-up' :  reverse }"></i>
+						</a>
+					</th>
+					<th>Заказ</th>
+				</tr>
+				<tr ng-show="table.length > 1">
+					<td class="numCol"><input class="input-block" ng-model="search.ART_ARTICLE_NR" type="text"></td>
+					<td class="brandCol"><input class="input-block" type="text" ng-model="search.SUP_BRAND" ></td>
+					<td class="colName"><input type="text" class="input-block" ng-model="search.TEX_TEXT"></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="row in table | filter:search | orderBy:predicate:reverse">					
+					<td>
+						<a ui-sref="cat.search({ search : row.ART_ARTICLE_NR })" href="">{{ row.ART_ARTICLE_NR }} </a>
+					</td>
+					<td>						
+							<img class="cou" ng-if="row.COU_ISO2" ng-src="http://autoparts-europe.ru/static/assets/img/flags/{{row.COU_ISO2|lowercase}}.png" alt="">
+							{{ row.SUP_BRAND }}						
+					</td>
+					<td>
+						<a ui-sref="cat.itemInfo({ brand : brandID, id : row.LA_ART_ID })" href="">
+							{{ row.TEX_TEXT }}
+						</a>
+						<div class="pull-right">
+							<i class="icon-info"></i>
+							<i class="icon-picture"></i>
+						</div>
+					</td>
+					<td><strong>0 руб</strong></td>
+					<td>
+						<div class="pull-right">
+								
+								<div class="buyWidget input-append">
+									<input type="text" class="buyCount input-mini">
+									<a href="" class="btn btn-mini"><i class="icon-shopping-cart"></i></a>
+								</div>
+								<a href="" class="btn btn-mini"><i class="icon-bookmark-empty"></i></a>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+	</div>
+</div>
+
+

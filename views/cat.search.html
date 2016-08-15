@@ -1,0 +1,208 @@
+<h1>Поиск автозапчастей</h1>
+<hr>
+
+
+<div ng-if="data.brands.length"  class="row-fluid">	
+	<div class="span12">
+		<h3 > Артикул {{ search }}   
+				<ng-pluralize count="data.brands.length"
+				when="{'0': 'не найден',
+				'1': 'найден в каталоге',
+				'other': 'найден в ({}) каталогах'}">
+				</ng-pluralize>:
+		</h3>
+
+		<table class="table table-condensed table-hover table-bordered table-striped modelTable">
+			<thead>
+				<tr>
+					<th>Фирма</th>
+					<th>Наименование</th>
+					<th> </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="row in data.brands" ng-click="$state.transitionTo('cat.searchbr', {'brand' : row.BRAND, 'search' : search} )"> 
+					<td>{{ row.BRAND }}</td>
+					<td> 
+
+						<img ng-repeat="kind in row.ARL_KIND" ng-src="http://tecdoc-module.com/parts/media/images/ntype_{{ kind }}.png" alt="">
+						{{ row.ART_COMPLETE_DES_TEXT }}
+					</td>
+					<td>
+						<a ui-sref="cat.searchbr({'brand' : row.BRAND, 'search' : search})">Найти</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div ng-if="data.articles[1].length" class="row-fluid">
+	<div class="span12">
+		<h3>По артикулу найдено</h3>
+		<table class="table table-condensed table-hover table-bordered table-striped modelTable">
+			<thead> <th class="numCol">Номер</th> <th class="brandCol">Фирма</th> <th class="colName">Наименование запчасти</th> 
+<th>Стоимость</th> <th>Заказ</th></thead>
+			<tbody>
+				<tr ng-repeat="row in data.articles[1]" > 
+				    <td>
+				        <a title="Поиск по идентификатору" ui-sref="cat.search({ search : row.ART_ARTICLE_NR })">
+				        {{ row.ART_ARTICLE_NR }}</a>
+				    </td>
+				    <td>
+				        <img ng-if="row.COU_ISO2" title="{{ art.COU_ISO2 }}" ng-src="/static/assets/img/flags/{{ row.COU_ISO2 | lowercase }}.png" alt="">
+				        {{ row.SUP_BRAND }}
+				    </td>
+				    <td>
+				        <a ui-sref="cat.itemInfo({ brand : row.SUP_BRAND, id : row.ART_ID })" title="Открыть подробную информацию" target="_blank" href="#">{{ row.TEX_TEXT }}</a>        
+				        <div class="pull-right">
+					        <a href=""><i class="icon-info"></i></a>
+					        <a href=""><i class="icon-picture"></i></a>
+				        </div>
+				    </td>
+				    <td></td>
+				    <td>
+				    	<div class="pull-right">
+								
+								<div class="buyWidget input-append">
+									<input type="text" class="buyCount input-mini">
+									<a href="" class="btn btn-mini"><i class="icon-shopping-cart"></i></a>
+								</div>
+								<a href="" class="btn btn-mini"><i class="icon-bookmark-empty"></i></a>
+						</div>
+				    	
+				    </td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div ng-if="data.articles[3].length" class="row-fluid">
+	<div class="span12">
+		<h3>OEM аналоги</h3>
+		<table class="table table-condensed table-hover table-bordered table-striped modelTable">
+			<thead> <th class="numCol">Номер</th> <th class="brandCol">Фирма</th> <th class="colName">Наименование запчасти</th> 
+<th>Стоимость</th> <th>Заказ</th></thead>
+			<tbody>
+				<tr ng-repeat="row in data.articles[3]" > 
+					<td>
+				        <a title="Поиск по идентификатору" ui-sref="cat.search({ search : row.ART_ARTICLE_NR })">
+				        {{ row.ART_ARTICLE_NR }}</a>
+				    </td>
+				    <td>
+				        <img ng-if="row.COU_ISO2" title="{{ art.COU_ISO2 }}" ng-src="/static/assets/img/flags/{{ row.COU_ISO2 | lowercase }}.png" alt="">
+				        {{ row.SUP_BRAND }}
+				    </td>
+				    <td>
+				        <a ui-sref="cat.itemInfo({ brand : row.SUP_BRAND, id : row.ART_ID })" title="Открыть подробную информацию" target="_blank" href="#">{{ row.TEX_TEXT }}</a>        
+				        <div class="pull-right">
+					        <a href=""><i class="icon-info"></i></a>
+					        <a href=""><i class="icon-picture"></i></a>
+				        </div>
+				    </td>
+				    <td></td>
+				    <td>
+				    	<div class="pull-right">
+								
+								<div class="buyWidget input-append">
+									<input type="text" class="buyCount input-mini">
+									<a href="" class="btn btn-mini"><i class="icon-shopping-cart"></i></a>
+								</div>
+								<a href="" class="btn btn-mini"><i class="icon-bookmark-empty"></i></a>
+						</div>
+				    	
+				    </td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+<div ng-if="data.articles[2].length" class="row-fluid">
+	<div class="span12">
+		<h3>Аналоги</h3>
+		<table class="table table-condensed table-hover table-bordered table-striped modelTable">
+			<thead> <th class="numCol">Номер</th> <th class="brandCol">Фирма</th> <th class="colName">Наименование запчасти</th> 
+<th>Стоимость</th> <th>Заказ</th></thead>
+			<tbody>
+				<tr ng-repeat="row in data.articles[2]" > 
+					<td>
+				        <a title="Поиск по идентификатору" ui-sref="cat.search({ search : row.ART_ARTICLE_NR })">
+				        {{ row.ART_ARTICLE_NR }}</a>
+				    </td>
+				    <td>
+				        <img ng-if="row.COU_ISO2" title="{{ art.COU_ISO2 }}" ng-src="/static/assets/img/flags/{{ row.COU_ISO2 | lowercase }}.png" alt="">
+				        {{ row.SUP_BRAND }}
+				    </td>
+				    <td>
+				        <a ui-sref="cat.itemInfo({ brand : row.SUP_BRAND, id : row.ART_ID })" title="Открыть подробную информацию" target="_blank" href="#">{{ row.TEX_TEXT }}</a>        
+				        <div class="pull-right">
+					        <a href=""><i class="icon-info"></i></a>
+					        <a href=""><i class="icon-picture"></i></a>
+				        </div>
+				    </td>
+				    <td></td>
+				    <td>
+				    	<div class="pull-right">
+								
+								<div class="buyWidget input-append">
+									<input type="text" class="buyCount input-mini">
+									<a href="" class="btn btn-mini"><i class="icon-shopping-cart"></i></a>
+								</div>
+								<a href="" class="btn btn-mini"><i class="icon-bookmark-empty"></i></a>
+						</div>
+
+				    </td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div ng-if="data.articles[4].length" class="row-fluid">
+	<div class="span12">
+		<h3>Сравнительные номера</h3>
+		<table class="table table-condensed table-hover table-bordered table-striped modelTable">
+			<thead> <th class="numCol">Номер</th> <th class="brandCol">Фирма</th> <th class="colName">Наименование запчасти</th> 
+<th>Стоимость</th> <th>Заказ</th></thead>
+			<tbody>
+				<tr ng-repeat="row in data.articles[4]" > 
+					<td>
+				        <a title="Поиск по идентификатору" ui-sref="cat.search({ search : row.ART_ARTICLE_NR })">
+				        {{ row.ART_ARTICLE_NR }}</a>
+				    </td>
+				    <td>
+				        <img ng-if="row.COU_ISO2" title="{{ art.COU_ISO2 }}" ng-src="/static/assets/img/flags/{{ row.COU_ISO2 | lowercase }}.png" alt="">
+				        {{ row.SUP_BRAND }}
+				    </td>
+				    <td>
+				        <a ui-sref="cat.itemInfo({ brand : row.SUP_BRAND, id : row.ART_ID })" title="Открыть подробную информацию" target="_blank" href="#">{{ row.TEX_TEXT }}</a>        
+				        <div class="pull-right">
+					        <a href=""><i class="icon-info"></i></a>
+					        <a href=""><i class="icon-picture"></i></a>
+				        </div>
+				    </td>
+				    <td></td>
+				    <td>
+				    	<div class="pull-right">
+								
+								<div class="buyWidget input-append">
+									<input type="text" class="buyCount input-mini">
+									<a href="" class="btn btn-mini"><i class="icon-shopping-cart"></i></a>
+								</div>
+								<a href="" class="btn btn-mini"><i class="icon-bookmark-empty"></i></a>
+						</div>
+				    	
+				    </td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+<div ng-if="!data.articles && !data.brands && !loading" class="row-fluid">
+	<div class="span12" ng-init="fdata.href = '/views/nofound.form.html' " ng-include="fdata.href"></div>
+</div>
